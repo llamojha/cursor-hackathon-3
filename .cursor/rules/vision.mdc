@@ -1,0 +1,17 @@
+---
+description: Conventions for the libreyolo-web vision app (detection loop, models, camera)
+globs: ["src/**/*.{ts,css}", "index.html"]
+alwaysApply: false
+---
+
+# Vision app rules
+
+- Use the `libreyolo-web` high-level API (`loadModel`, `predict`, `BoxOverlay`,
+  `listModels`). Do not hand-roll ONNX pre/post-processing unless a model isn't
+  supported.
+- Detection runs per-frame in a `requestAnimationFrame` loop. Keep per-frame work
+  cheap; offload anything heavy to a Web Worker.
+- The overlay canvas dimensions must match `video.videoWidth/Height` so box
+  coordinates align with the feed.
+- WebGPU is preferred; assume WASM fallback exists. Don't assume a GPU.
+- Camera access needs a secure context — test on localhost or https.

@@ -1,0 +1,89 @@
+:root {
+  color-scheme: dark;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0b0c10;
+  color: #e8e8ea;
+  display: grid;
+  place-items: start center;
+  min-height: 100vh;
+}
+
+main {
+  width: min(900px, 100%);
+  padding: 24px;
+}
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  gap: 4px;
+  color: #9aa0aa;
+}
+
+select,
+button {
+  background: #1a1c22;
+  color: #e8e8ea;
+  border: 1px solid #2c2f38;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+button {
+  cursor: pointer;
+  align-self: end;
+}
+
+button:hover {
+  border-color: #4b5563;
+}
+
+.status {
+  align-self: end;
+  font-size: 0.8rem;
+  color: #9aa0aa;
+}
+
+/* The video and overlay canvas must occupy the same box so boxes line up. */
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#video,
+#overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fps {
+  font-variant-numeric: tabular-nums;
+  color: #9aa0aa;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,16 @@
+---
+description: TypeScript best practices — apply when writing or refactoring TypeScript
+alwaysApply: false
+---
+
+# TypeScript conventions
+
+Ported/adapted from a `typescript-pro` agent. Pull this in for non-trivial TS work.
+
+- Prefer strict typing; avoid `any`. Use `unknown` + narrowing at boundaries.
+- Model domain shapes with `interface`/`type`; use discriminated unions for state.
+- Let inference work — annotate public function signatures and exports, not every local.
+- Use `readonly` and `as const` for immutable data; avoid mutating shared state.
+- Handle async errors explicitly; never leave a floating promise in the render loop.
+- Keep modules small and single-purpose; co-locate types with their usage.
+- This project runs `strict`, `noUnusedLocals`, and `noUnusedParameters` — keep it clean.
