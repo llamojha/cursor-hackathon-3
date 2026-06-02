@@ -1,0 +1,44 @@
+[
+  {
+    "id": "marina-01",
+    "displayName": "Marina",
+    "age": 26,
+    "outfitPhotoUrl": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop",
+    "redFlagPhotoUrl": "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&h=600&fit=crop",
+    "toxicityScore": 72,
+    "redFlags": [
+      "Lleva gorra snapback en interior con etiqueta visible",
+      "Zapatillas blancas imposibles de limpiar en primera cita",
+      "Bio: «no drama» pero historia de Instagram de 47 highlights de ex"
+    ],
+    "phone": "+34 612 847 291"
+  },
+  {
+    "id": "dani-02",
+    "displayName": "Dani",
+    "age": 31,
+    "outfitPhotoUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
+    "redFlagPhotoUrl": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=600&fit=crop",
+    "toxicityScore": 88,
+    "redFlags": [
+      "Camisa de cuadros abrochada hasta el cuello en agosto",
+      "Reloj enorme que cuesta más que el alquiler que presume no pagar",
+      "Dice «soy muy directo» como excusa para ser borde"
+    ],
+    "phone": "+34 698 203 114"
+  },
+  {
+    "id": "lucia-03",
+    "displayName": "Lucía",
+    "age": 24,
+    "outfitPhotoUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop",
+    "redFlagPhotoUrl": "https://images.unsplash.com/photo-1611162617474-5b21e939e966?w=600&h=600&fit=crop",
+    "toxicityScore": 61,
+    "redFlags": [
+      "Outfit totalmente negro incluyendo gafas de sol en la noche",
+      "Foto red flag: captura de «visto a las 3:04» en WhatsApp",
+      "TikTok en bio con baile de 8 segundos como personalidad entera"
+    ],
+    "phone": "+34 677 550 902"
+  }
+]
