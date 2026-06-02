@@ -20,6 +20,13 @@ main {
 h1 {
   font-size: 1.25rem;
   font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tagline {
+  margin: 0 0 16px;
+  font-size: 0.85rem;
+  color: #9aa0aa;
 }
 
 .controls {
@@ -86,4 +93,385 @@ button:hover {
   font-variant-numeric: tabular-nums;
   color: #9aa0aa;
   font-size: 0.8rem;
+}
+
+.date-panel {
+  margin-bottom: 16px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid #2c2f38;
+  background: linear-gradient(145deg, #14161c 0%, #1a1220 100%);
+}
+
+.date-panel--hidden {
+  display: none;
+}
+
+.date-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.date-panel__kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9aa0aa;
+}
+
+.date-panel__score {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.date-panel__tier {
+  margin: 8px 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.date-panel__flags {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  color: #9aa0aa;
+}
+
+.toxic-receipt-wrap {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #0f1014;
+  border: 1px solid #2c2f38;
+}
+
+.toxic-receipt__title {
+  margin: 0 0 8px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9aa0aa;
+}
+
+.toxic-receipt {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.toxic-receipt__line--bad {
+  color: #fca5a5;
+}
+
+.toxic-receipt__line--good {
+  color: #86efac;
+}
+
+.toxic-receipt__line--neutral {
+  color: #9aa0aa;
+}
+
+.toxic-receipt__line--header {
+  margin-top: 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e8e8ea;
+}
+
+.toxic-receipt__line--header:first-child {
+  margin-top: 0;
+}
+
+.toxic-receipt__footer {
+  margin: 8px 0 0;
+  font-size: 0.72rem;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+.date-meter {
+  height: 6px;
+  border-radius: 999px;
+  background: #2c2f38;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.date-meter__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: #e879a9;
+  transition: width 0.35s ease, background-color 0.35s ease;
+}
+
+.date-panel__roast {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #d4d4dc;
+}
+
+.date-panel__disclaimer {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.date-panel[data-tier='needs-work'] .date-meter__fill {
+  background: #6b7280;
+}
+
+.date-panel[data-tier='introvert'] .date-meter__fill {
+  background: #a78bfa;
+}
+
+.date-panel[data-tier='dateable'] .date-meter__fill {
+  background: #f472b6;
+}
+
+.date-panel[data-tier='main-character'] .date-meter__fill {
+  background: #fb7185;
+}
+
+.date-panel[data-tier='waiting'] .date-meter__fill {
+  background: #4b5563;
+}
+
+/* Outfit check tiers */
+.date-panel[data-tier='pajamas'] .date-meter__fill {
+  background: #6b7280;
+}
+
+.date-panel[data-tier='casual'] .date-meter__fill {
+  background: #a78bfa;
+}
+
+.date-panel[data-tier='puttogether'] .date-meter__fill {
+  background: #38bdf8;
+}
+
+.date-panel[data-tier='runway'] .date-meter__fill {
+  background: #fb7185;
+}
+
+.date-panel[data-tier='green'] .date-meter__fill {
+  background: #4ade80;
+}
+
+.date-panel[data-tier='beige'] .date-meter__fill {
+  background: #fbbf24;
+}
+
+.date-panel[data-tier='yellow'] .date-meter__fill {
+  background: #fb923c;
+}
+
+.date-panel[data-tier='toxic'] .date-meter__fill {
+  background: #ef4444;
+}
+
+/* Dual-score columns (Outfit + Toxicity) */
+.combined-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.combined-stat {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #0f1014;
+  border: 1px solid #2c2f38;
+}
+
+.combined-stat__label {
+  margin: 0 0 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9aa0aa;
+}
+
+.combined-stat__value {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--tier-color, #e8e8ea);
+}
+
+.combined-stat__tier {
+  margin: 6px 0 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.combined-stat__meter {
+  height: 6px;
+  border-radius: 999px;
+  background: #2c2f38;
+  overflow: hidden;
+}
+
+.combined-stat__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: var(--tier-color, #4b5563);
+  transition: width 0.35s ease, background-color 0.35s ease;
+}
+
+.combined-stat[data-tier='waiting'] {
+  --tier-color: #4b5563;
+}
+.combined-stat[data-tier='green'] {
+  --tier-color: #4ade80;
+}
+.combined-stat[data-tier='beige'] {
+  --tier-color: #fbbf24;
+}
+.combined-stat[data-tier='yellow'] {
+  --tier-color: #fb923c;
+}
+.combined-stat[data-tier='toxic'] {
+  --tier-color: #ef4444;
+}
+.combined-stat[data-tier='pajamas'] {
+  --tier-color: #9aa0aa;
+}
+.combined-stat[data-tier='casual'] {
+  --tier-color: #a78bfa;
+}
+.combined-stat[data-tier='puttogether'] {
+  --tier-color: #38bdf8;
+}
+.combined-stat[data-tier='runway'] {
+  --tier-color: #fb7185;
+}
+
+.result-card {
+  margin-top: 20px;
+}
+
+.result-card__sheet {
+  display: grid;
+  gap: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #2c2f38;
+  background: #14161c;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 45%);
+}
+
+.result-card__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #000;
+}
+
+.result-card__verdict {
+  padding: 16px 18px 8px;
+}
+
+.result-card__kicker {
+  margin: 0 0 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9aa0aa;
+}
+
+.result-card__score {
+  margin: 0;
+  font-size: 2.75rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.result-card__tier {
+  margin: 8px 0 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.result-card__roast {
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #d4d4dc;
+}
+
+.result-card__sheet .toxic-receipt-wrap {
+  margin-bottom: 0;
+}
+
+.result-card__again {
+  display: block;
+  width: calc(100% - 36px);
+  margin: 0 18px 18px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #2c2f38;
+  border: 1px solid #4b5563;
+  color: #e8e8ea;
+  cursor: pointer;
+}
+
+.result-card__again:hover {
+  border-color: #9aa0aa;
+}
+
+.result-card__sheet[data-tier='green'] .result-card__score {
+  color: #4ade80;
+}
+
+.result-card__sheet[data-tier='beige'] .result-card__score {
+  color: #fbbf24;
+}
+
+.result-card__sheet[data-tier='yellow'] .result-card__score {
+  color: #fb923c;
+}
+
+.result-card__sheet[data-tier='toxic'] .result-card__score {
+  color: #ef4444;
+}
+
+.result-card__sheet[data-tier='waiting'] .result-card__score {
+  color: #9aa0aa;
+}
+
+/* Outfit check tiers */
+.result-card__sheet[data-tier='pajamas'] .result-card__score {
+  color: #9aa0aa;
+}
+
+.result-card__sheet[data-tier='casual'] .result-card__score {
+  color: #a78bfa;
+}
+
+.result-card__sheet[data-tier='puttogether'] .result-card__score {
+  color: #38bdf8;
+}
+
+.result-card__sheet[data-tier='runway'] .result-card__score {
+  color: #fb7185;
 }

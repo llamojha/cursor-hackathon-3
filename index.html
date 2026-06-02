@@ -3,14 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vision Hack3 — LibreYOLO live detection</title>
+    <title>Outfit check — Vision Hack3</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <main>
-      <h1>LibreYOLO live detection</h1>
+      <h1>Outfit check</h1>
+      <p class="tagline">
+        Point the camera at your fit. We rate it and roast it. Brutally.
+      </p>
+
+      <section id="date-panel" class="date-panel date-panel--hidden" aria-live="polite">
+        <div class="date-panel__head">
+          <p id="date-kicker" class="date-panel__kicker">Outfit + Toxicity</p>
+          <p id="date-score" class="date-panel__score">—</p>
+        </div>
+        <p id="date-tier" class="date-panel__tier">—</p>
+        <div id="combined-stats" class="combined-stats" hidden></div>
+        <p id="date-flags" class="date-panel__flags" hidden></p>
+        <div id="toxic-receipt-wrap" class="toxic-receipt-wrap" hidden>
+          <p class="toxic-receipt__title">Why?</p>
+          <ul id="toxic-receipt" class="toxic-receipt"></ul>
+          <p id="toxic-receipt-footer" class="toxic-receipt__footer"></p>
+        </div>
+        <div id="date-meter" class="date-meter" aria-hidden="true">
+          <div id="date-meter-fill" class="date-meter__fill"></div>
+        </div>
+        <p id="date-roast" class="date-panel__roast">
+          Start the camera and step into frame. Let's see this alleged outfit.
+        </p>
+        <p id="date-disclaimer" class="date-panel__disclaimer">
+          Parody fit read from objects in frame — not a stylist, not your friend.
+        </p>
+      </section>
 
       <div class="controls">
+        <label>
+          Mode
+          <select id="mode">
+            <option value="combined">Outfit + Toxicity (10s)</option>
+            <!-- Archived modes — uncomment any to bring it back into the UI.
+            <option value="outfit">Outfit check</option>
+            <option value="toxic">Toxic prediction (10s)</option>
+            <option value="score">Dateable score</option>
+            <option value="prop-hunt">Prop hunt</option>
+            -->
+          </select>
+        </label>
         <label>
           Model
           <select id="model"></select>
@@ -26,6 +65,27 @@
       </div>
 
       <p id="fps" class="fps"></p>
+
+      <div id="result-card" class="result-card" hidden>
+        <article id="result-sheet" class="result-card__sheet">
+          <img id="result-photo" class="result-card__photo" alt="Captured frame" />
+          <div class="result-card__verdict">
+            <p id="result-kicker" class="result-card__kicker">Outfit + Toxicity</p>
+            <p id="result-score" class="result-card__score">—</p>
+            <p id="result-tier" class="result-card__tier">—</p>
+            <div id="result-combined" class="combined-stats" hidden></div>
+            <p id="result-roast" class="result-card__roast"></p>
+            <div id="result-receipt-wrap" class="toxic-receipt-wrap">
+              <p class="toxic-receipt__title">Why?</p>
+              <ul id="result-receipt" class="toxic-receipt"></ul>
+              <p id="result-receipt-footer" class="toxic-receipt__footer"></p>
+            </div>
+          </div>
+          <button type="button" id="result-again" class="result-card__again">
+            Try again
+          </button>
+        </article>
+      </div>
     </main>
 
     <script type="module" src="/src/main.ts"></script>
