@@ -56,14 +56,14 @@ export function computeOutfitBreakdown(
 } {
   const receipt: ToxicReceiptLine[] = [];
   let score = BASELINE_OUTFIT;
-  receipt.push({ label: 'base fit', delta: BASELINE_OUTFIT, tone: 'neutral' });
+  receipt.push({ label: 'base del outfit', delta: BASELINE_OUTFIT, tone: 'neutral' });
 
   const persons = getCount(counts, 'person');
   if (persons === 1) {
-    receipt.push({ label: 'you, in frame', delta: 15, tone: 'good' });
+    receipt.push({ label: 'tú, en cuadro', delta: 15, tone: 'good' });
     score += 15;
   } else if (persons >= 2) {
-    receipt.push({ label: 'group fit check', delta: 8, tone: 'good' });
+    receipt.push({ label: 'control de looks en grupo', delta: 8, tone: 'good' });
     score += 8;
   }
 
@@ -81,29 +81,29 @@ export function computeOutfitBreakdown(
   }
 
   if (accessoryCount >= 3) {
-    receipt.push({ label: 'fully accessorized', delta: 10, tone: 'good' });
+    receipt.push({ label: 'totalmente accesorizad@', delta: 10, tone: 'good' });
     score += 10;
   }
 
   if (getCount(counts, 'cell phone') >= 1) {
-    receipt.push({ label: 'phone ruins the fit pic', delta: -10, tone: 'bad' });
+    receipt.push({ label: 'el móvil arruina la foto', delta: -10, tone: 'bad' });
     score -= 10;
   }
 
-  // Framing / "pose" read from the person box.
+  // Encuadre / "pose" a partir de la caja de la persona.
   if (framing) {
     if (framing.distance === 'good') {
-      receipt.push({ label: 'well-framed', delta: 8, tone: 'good' });
+      receipt.push({ label: 'bien encuadrad@', delta: 8, tone: 'good' });
       score += 8;
     } else if (framing.distance === 'far') {
-      receipt.push({ label: 'too far — get closer', delta: -8, tone: 'bad' });
+      receipt.push({ label: 'muy lejos — acércate', delta: -8, tone: 'bad' });
       score -= 8;
     } else {
-      receipt.push({ label: 'extreme close-up', delta: -4, tone: 'bad' });
+      receipt.push({ label: 'primerísimo plano', delta: -4, tone: 'bad' });
       score -= 4;
     }
     if (framing.offset !== 'center') {
-      receipt.push({ label: 'off-center', delta: -5, tone: 'bad' });
+      receipt.push({ label: 'descentrad@', delta: -5, tone: 'bad' });
       score -= 5;
     }
   }

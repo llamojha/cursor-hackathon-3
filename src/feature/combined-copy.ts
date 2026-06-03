@@ -1,35 +1,35 @@
-// Combined verdict roasts — play the outfit score against the toxicity score.
+// Veredicto combinado — enfrenta la nota de outfit contra la de toxicidad.
 const HOT_TOXIC = [
-  'Dressed like a snack, behaves like a red flag. Iconic disaster.',
-  'The fit says “date me,” the props say “run.” Both are correct.',
-  'Gorgeous packaging, cursed contents. A scam, but a well-dressed one.',
+  'Vas hecho un bombón pero te comportas como una red flag. Desastre icónico.',
+  'El outfit dice “sal conmigo”, los objetos dicen “corre”. Ambos tienen razón.',
+  'Envoltorio precioso, contenido maldito. Una estafa, pero bien vestida.',
 ];
 
 const HOT_SAFE = [
-  'Hot AND low-drama? Suspicious. We’re calling your ex to confirm.',
-  'Great fit, clean vibes. Are you a houseplant in human form? Be honest.',
-  'Put-together and harmless. Statistically, you do not exist.',
+  '¿Guap@ Y sin drama? Sospechoso. Vamos a llamar a tu ex para confirmarlo.',
+  'Buen outfit, vibras limpias. ¿Eres una planta con forma de persona? Sé sincer@.',
+  'Bien conjuntad@ e inofensiv@. Estadísticamente, no existes.',
 ];
 
 const MID_TOXIC = [
-  'Bad fit AND toxic? At least you’re consistent across every axis.',
-  'Ugly vibes inside and out. Efficient, honestly.',
-  'No drip and a red flag. The full anti-glow-up package.',
+  '¿Mal outfit Y tóxic@? Por lo menos eres coherente en todos los frentes.',
+  'Malas vibras por dentro y por fuera. Eficiente, la verdad.',
+  'Sin estilo y con bandera roja. El pack completo del anti-glow-up.',
 ];
 
 const MID_SAFE = [
-  'Boring but harmless — the human equivalent of plain oatmeal.',
-  'No drama, no fit, no notes. A beige flag in cargo shorts.',
-  'Inoffensive on all fronts. You’d survive me, but barely entertain me.',
+  'Aburrid@ pero inofensiv@: el equivalente humano a las gachas sin sal.',
+  'Sin drama, sin outfit, sin comentarios. Una bandera beige en bermudas.',
+  'Inofensiv@ en todos los aspectos. Me sobrevivirías, pero a duras penas me entretienes.',
 ];
 
-const WAITING = 'Get fully in frame so we can judge the whole disaster.';
+const WAITING = 'Ponte entero en cuadro para que podamos juzgar el desastre completo.';
 
 function rotate(pool: readonly string[], now: number): string {
   return pool[Math.floor(now / 8000) % pool.length]!;
 }
 
-/** Pick a combined roast from the two scores (≥50 = "hot" / "toxic"). */
+/** Elige un veredicto combinado según las dos notas (≥50 = "guapo" / "tóxico"). */
 export function combinedRoast(
   outfit: number,
   toxic: number,

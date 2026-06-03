@@ -421,6 +421,49 @@ button:hover {
   margin-bottom: 0;
 }
 
+.result-vision {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #0f1014;
+  border: 1px solid #2c2f38;
+}
+
+.result-vision__title {
+  margin: 0 0 8px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9aa0aa;
+}
+
+.result-vision__roasts {
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.result-vision__roast {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #f3d9e6;
+}
+
+.result-vision__roast:last-child {
+  margin-bottom: 0;
+}
+
+.result-vision__list {
+  margin: 0;
+  padding: 8px 0 0;
+  border-top: 1px solid #2c2f38;
+  list-style: none;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #9aa0aa;
+}
+
 .result-card__again {
   display: block;
   width: calc(100% - 36px);

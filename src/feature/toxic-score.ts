@@ -47,60 +47,60 @@ export function computeToxicBreakdown(counts: Record<string, number>): {
 } {
   const receipt: ToxicReceiptLine[] = [];
   let score = BASELINE_TOXIC;
-  receipt.push({ label: 'base vibe', delta: BASELINE_TOXIC });
+  receipt.push({ label: 'vibra base', delta: BASELINE_TOXIC });
 
   const phones = getCount(counts, 'cell phone');
   if (phones >= 1) {
-    receipt.push({ label: 'phone in frame', delta: 22 });
+    receipt.push({ label: 'móvil en cuadro', delta: 22 });
     score += 22;
   }
   if (phones >= 2) {
-    receipt.push({ label: 'second phone', delta: 18 });
+    receipt.push({ label: 'segundo móvil', delta: 18 });
     score += 18;
   }
 
   if (getCount(counts, 'laptop') >= 1) {
-    receipt.push({ label: 'laptop', delta: 20 });
+    receipt.push({ label: 'portátil', delta: 20 });
     score += 20;
   }
   if (getCount(counts, 'tv') >= 1) {
-    receipt.push({ label: 'tv', delta: 10 });
+    receipt.push({ label: 'tele', delta: 10 });
     score += 10;
   }
 
   const persons = getCount(counts, 'person');
   if (persons >= 2) {
-    receipt.push({ label: 'crowd (2+ people)', delta: 28 });
+    receipt.push({ label: 'multitud (2+ personas)', delta: 28 });
     score += 28;
   } else if (persons === 0) {
-    receipt.push({ label: 'nobody in frame', delta: 8 });
+    receipt.push({ label: 'nadie en cuadro', delta: 8 });
     score += 8;
   }
 
   const party = getCount(counts, 'bottle') + getCount(counts, 'wine glass');
   if (party >= 2) {
-    receipt.push({ label: 'party drinks', delta: 12 });
+    receipt.push({ label: 'copas de fiesta', delta: 12 });
     score += 12;
   } else if (party === 1) {
-    receipt.push({ label: 'one drink', delta: 5 });
+    receipt.push({ label: 'una copa', delta: 5 });
     score += 5;
   }
 
   if (getCount(counts, 'couch') >= 1 && phones >= 1) {
-    receipt.push({ label: 'couch + phone', delta: 8 });
+    receipt.push({ label: 'sofá + móvil', delta: 8 });
     score += 8;
   }
 
   if (persons === 1 && phones === 0 && getCount(counts, 'laptop') === 0) {
-    receipt.push({ label: 'solo, no phone/laptop', delta: -10 });
+    receipt.push({ label: 'sol@, sin móvil/portátil', delta: -10 });
     score -= 10;
   }
   if (getCount(counts, 'book') >= 1 && phones === 0) {
-    receipt.push({ label: 'book, phone-free', delta: -6 });
+    receipt.push({ label: 'libro, sin móvil', delta: -6 });
     score -= 6;
   }
   if (getCount(counts, 'potted plant') >= 1) {
-    receipt.push({ label: 'plant', delta: -5 });
+    receipt.push({ label: 'planta', delta: -5 });
     score -= 5;
   }
 

@@ -8,10 +8,10 @@ export type OutfitTier = {
 };
 
 export const OUTFIT_TIERS: readonly OutfitTier[] = [
-  { id: 'pajamas', label: 'Just rolled out of bed', min: 0, max: 24 },
-  { id: 'casual', label: 'Casual cool', min: 25, max: 49 },
-  { id: 'puttogether', label: 'Put-together', min: 50, max: 74 },
-  { id: 'runway', label: 'Runway ready', min: 75, max: 100 },
+  { id: 'pajamas', label: 'Recién salido de la cama', min: 0, max: 24 },
+  { id: 'casual', label: 'Casual pero correcto', min: 25, max: 49 },
+  { id: 'puttogether', label: 'Bien conjuntado', min: 50, max: 74 },
+  { id: 'runway', label: 'Listo para la pasarela', min: 75, max: 100 },
 ];
 
 export const OUTFIT_TIER_EMOJI: Record<OutfitTierId, string> = {
@@ -23,41 +23,41 @@ export const OUTFIT_TIER_EMOJI: Record<OutfitTierId, string> = {
 
 export const OUTFIT_TIER_ROASTS: Record<OutfitTierId, readonly string[]> = {
   pajamas: [
-    'Zero accessories. This isn’t an outfit, it’s a hostage situation.',
-    'The fit said “I have given up, and so should you.”',
-    'Detected: the exact energy of answering the door for a food delivery.',
-    'This is “I’ll just throw something on” used as a threat.',
-    'You’re not underdressed, you’re pre-dressed. Keep going, champ.',
+    'Cero accesorios. Esto no es un outfit, es un secuestro.',
+    'El look dice “me he rendido, y tú deberías hacer lo mismo”.',
+    'Detectada: la energía exacta de abrir la puerta al repartidor de comida.',
+    'Esto es “me pongo cualquier cosa” usado como amenaza.',
+    'No vas mal vestid@, vas pre-vestid@. Sigue intentándolo, campeón.',
   ],
   casual: [
-    'Mid. Aggressively, confidently, unapologetically mid.',
-    'The outfit equivalent of a shrug emoji. 🤷',
-    'Not bad, not good, not memorable. A beige flag in human form.',
-    'Dressed for “sprint to the corner store praying no one sees me.”',
-    'One accessory away from having a whole personality. So close.',
+    'Del montón. Agresiva, segura y descaradamente del montón.',
+    'El equivalente en ropa a un emoji de hombros encogidos. 🤷',
+    'Ni bien, ni mal, ni memorable. Una bandera beige con patas.',
+    'Vestid@ para “correr al super rezando para que nadie me vea”.',
+    'A un accesorio de tener una personalidad entera. Casi.',
   ],
   puttogether: [
-    'Oh, effort! Someone wants to be perceived. We respect the audacity.',
-    'This is “I knew I’d be on camera” energy and it’s loud.',
-    'Coordinated enough to fool people who don’t know you. Bravo.',
-    'Dressing like the rent is paid and the trauma is processed. Lies, but cute.',
+    'Ah, ¡esfuerzo! Alguien quiere que lo miren. Respetamos la osadía.',
+    'Esto es energía de “sabía que iba a salir en cámara” y se nota.',
+    'Conjuntad@ lo justo para engañar a quien no te conoce. Bravo.',
+    'Vistes como si pagaras el alquiler y tuvieras el trauma superado. Mentira, pero mono.',
   ],
   runway: [
-    'Okay supermodel, the rest of us are in pajamas. Read the room.',
-    'Fully accessorized. Genuine question — who is this for?',
-    'This is “I’ll just be ten minutes” that took two hours. We can tell.',
-    'Serving a full look to a webcam at a hackathon. Iconic. Unwell. Iconic.',
+    'Vale, top model, el resto vamos en pijama. Lee el ambiente.',
+    'Accesorizad@ a tope. Pregunta sincera: ¿esto para quién es?',
+    'Esto es “bajo en diez minutos” que tardó dos horas. Se nota.',
+    'Sirviendo looks a una webcam en un hackathon. Icónic@. Mal de la cabeza. Icónic@.',
   ],
 };
 
 export const OUTFIT_WAITING_ROAST =
-  'We can’t roast thin air. Get in frame, coward.';
+  'No podemos despellejar el aire. Ponte en cuadro, cobarde.';
 
-/** Framing feedback (from the person box) — wins over tier roasts when bad. */
+/** Feedback de encuadre (desde la caja de la persona) — gana al roast de tier si va mal. */
 export const FRAMING_ROASTS: Record<'far' | 'close' | 'offcenter', string> = {
-  far: 'Step closer — we can’t rate a fit we can’t see. You’re a speck.',
-  close: 'Whoa, nostril cam. Back up — this is a fit check, not a dermatology appointment.',
-  offcenter: 'Center yourself. You’re half-cropped like a guilty dating-profile pic.',
+  far: 'Acércate — no podemos puntuar un outfit que no se ve. Eres una mota.',
+  close: 'Eh, cámara-fosa-nasal. Atrás — esto es un análisis de outfit, no una cita con el dermatólogo.',
+  offcenter: 'Céntrate. Vas medio recortad@ como una foto de perfil con mala conciencia.',
 };
 
 export type OutfitRoast = {
@@ -68,35 +68,35 @@ export type OutfitRoast = {
 export const OUTFIT_CONTEXTUAL_ROASTS: readonly OutfitRoast[] = [
   {
     match: (c) => (c.tie ?? 0) >= 1,
-    line: 'A tie. At a hackathon. You’re either closing a deal or lying to someone.',
+    line: 'Una corbata. En un hackathon. O cierras un trato o le mientes a alguien.',
   },
   {
     match: (c) => (c.handbag ?? 0) >= 1 && (c.umbrella ?? 0) >= 1,
-    line: 'Bag AND umbrella — prepared for everything except being perceived this hard.',
+    line: 'Bolso Y paraguas — preparad@ para todo menos para que te miren tan fijo.',
   },
   {
     match: (c) => (c.suitcase ?? 0) >= 1,
-    line: 'A suitcase? Bold to pack before the first date even ends in disaster.',
+    line: '¿Una maleta? Valiente hacer la maleta antes de que la primera cita acabe en desastre.',
   },
   {
     match: (c) => (c.backpack ?? 0) >= 1,
-    line: 'Backpack on. Are we going on an adventure or did you forget to grow up?',
+    line: 'Mochila puesta. ¿Nos vamos de aventura o se te olvidó madurar?',
   },
   {
     match: (c) => (c['cell phone'] ?? 0) >= 1,
-    line: 'Phone welded to the hand. The fit’s fine; the attachment style is the red flag.',
+    line: 'Móvil soldado a la mano. El outfit está bien; el apego es la red flag.',
   },
   {
     match: (c) => (c.person ?? 0) >= 2,
-    line: 'Group shot. Statistically, one of you is the “before” photo.',
+    line: 'Foto de grupo. Estadísticamente, uno de vosotros es la foto del “antes”.',
   },
 ];
 
-/** Per-item labels for the "Why?" receipt. */
+/** Etiquetas por objeto para el recibo "¿Por qué?". */
 export const OUTFIT_ITEM_LABELS: Record<string, string> = {
-  tie: 'dressed to impress',
-  handbag: 'accessorized',
-  backpack: 'adventure-ready',
-  umbrella: 'weather-prepared',
-  suitcase: 'going somewhere',
+  tie: 'vestid@ para impresionar',
+  handbag: 'con accesorios',
+  backpack: 'list@ para la aventura',
+  umbrella: 'preparad@ para la lluvia',
+  suitcase: 'de viaje',
 };

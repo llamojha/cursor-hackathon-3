@@ -240,7 +240,7 @@ export function scoreCommunionWatch(
   const personW = main.bbox[2] - main.bbox[0];
   const personH = main.bbox[3] - main.bbox[1];
   const area = (personW * personH) / (width * height);
-  const [pcx, pcy] = bboxCenter(main.bbox);
+  const [, pcy] = bboxCenter(main.bbox);
 
   // Selfie: cara en cuadro aunque el bbox empiece un poco más abajo
   const faceOk =

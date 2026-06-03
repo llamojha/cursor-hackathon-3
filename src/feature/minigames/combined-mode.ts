@@ -11,6 +11,15 @@ function withEmoji(emoji: string | undefined, label: string): string {
   return emoji ? `${emoji} ${label}` : label;
 }
 
+const FLAG_ES: Record<string, string> = {
+  tie: 'corbata',
+  handbag: 'bolso',
+  backpack: 'mochila',
+  umbrella: 'paraguas',
+  suitcase: 'maleta',
+  'cell phone': 'móvil',
+};
+
 export function createCombinedMinigame(
   outfitScore: ReturnType<typeof createOutfitScore>,
   toxicScore: ReturnType<typeof createToxicScore>,
@@ -37,7 +46,7 @@ export function createCombinedMinigame(
         meterPercent: o.score,
       },
       {
-        label: 'Toxicity',
+        label: 'Toxicidad',
         value: `${t.score}%`,
         tier: withEmoji(TIER_EMOJI[t.tierId as ToxicTierId], t.tierLabel),
         tierId: t.tierId,
@@ -45,22 +54,24 @@ export function createCombinedMinigame(
       },
     ];
 
-    // Merge both breakdowns under section headers.
+    // Fusiona ambos desgloses bajo cabeceras de sección.
     const receipt: ToxicReceiptLine[] = [];
     if (o.receipt.length) {
       receipt.push({ label: 'Outfit', delta: 0, tone: 'neutral', header: true });
       receipt.push(...o.receipt);
     }
     if (t.receipt.length) {
-      receipt.push({ label: 'Toxicity', delta: 0, tone: 'neutral', header: true });
+      receipt.push({ label: 'Toxicidad', delta: 0, tone: 'neutral', header: true });
       receipt.push(...t.receipt);
     }
 
     const fitLine =
-      o.flags.length > 0 ? `Fit: ${o.flags.join(' · ')}` : 'No accessories detected';
+      o.flags.length > 0
+        ? `Prendas: ${o.flags.map((f) => FLAG_ES[f] ?? f).join(' · ')}`
+        : 'Sin accesorios detectados';
 
     return {
-      kicker: 'Outfit + Toxicity',
+      kicker: 'Outfit + Toxicidad',
       primary: String(o.score),
       secondary: '',
       roast: combinedRoast(o.score, t.score, o.tierId === 'waiting', now),
@@ -69,7 +80,7 @@ export function createCombinedMinigame(
       subtitle: fitLine,
       blocks,
       receipt: receipt.length > 0 ? receipt : undefined,
-      receiptFooter: `Outfit raw ${o.rawScore} · Toxicity raw ${t.rawScore}%`,
+      receiptFooter: `Outfit bruto ${o.rawScore} · Toxicidad bruta ${t.rawScore}%`,
     };
   }
 
