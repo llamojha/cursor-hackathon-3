@@ -193,11 +193,25 @@ export class LandingApp {
     const status = this.root.querySelector('#status')!;
     const loader = this.root.querySelector('#loader');
 
+    let video: HTMLVideoElement;
     try {
-      const video = await this.camera.start('user');
-      video.classList.add('mirror');
-      wrap.prepend(video);
+      video = await this.camera.start('user');
+    } catch (err) {
+      status.textContent =
+        err instanceof Error && err.name === 'NotAllowedError'
+          ? 'Sin permiso de cámara. Los bots no tienen vergüenza, pero necesitan acceso.'
+          : 'No pudimos encender la cámara. Prueba con HTTPS y otro navegador.';
+      status.className = 'captcha-status fail';
+      loader?.remove();
+      return;
+    }
 
+    video.classList.add('mirror');
+    wrap.prepend(video);
+
+    // Model load is separate from camera start: if it fails, the camera is
+    // already live, so don't tell the user the camera couldn't turn on.
+    try {
       const model = await this.ensureModel((p) => {
         if (loader) loader.textContent = `Descargando LibreYOLO… ${Math.round(p * 100)}%`;
         const bar = loader?.querySelector('span');
@@ -276,10 +290,9 @@ export class LandingApp {
 
       this.detectLoop = requestAnimationFrame(tick);
     } catch (err) {
+      console.error('model load failed', err);
       status.textContent =
-        err instanceof Error && err.name === 'NotAllowedError'
-          ? 'Sin permiso de cámara. Los bots no tienen vergüenza, pero necesitan acceso.'
-          : 'No pudimos encender la cámara. Prueba con HTTPS y otro navegador.';
+        'La cámara funciona, pero no pudimos cargar el detector. Recarga la página e inténtalo de nuevo.';
       status.className = 'captcha-status fail';
       loader?.remove();
     }

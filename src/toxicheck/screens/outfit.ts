@@ -29,12 +29,19 @@ export function createOutfitScreen(ctx: ScreenContext): ScreenInstance {
   let timer: number | null = null;
 
   async function runCapture() {
+    // Freeze the frame so the scan visibly "holds" on the captured shot while the
+    // (async) vision analysis runs — otherwise the live video keeps moving and it
+    // looks like nothing was captured.
+    video.pause();
+    el.querySelector('.tk-scan')?.classList.add('hidden');
     status.textContent = 'Congelando el desastre y juzgándote…';
     try {
       ctx.state.analysis = await ctx.engine.capture(video);
       ctx.navigate('score');
     } catch {
       status.textContent = 'No se pudo analizar. Reintenta.';
+      el.querySelector('.tk-scan')?.classList.remove('hidden');
+      void video.play().catch(() => {});
     }
   }
 
