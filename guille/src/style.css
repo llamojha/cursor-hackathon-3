@@ -17,7 +17,12 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  background: radial-gradient(circle at top, #151528 0%, var(--bg) 55%);
+  /* Solid dark color first so mobile overscroll / safe-area "borders" stay dark
+     (the root element's background-color propagates to the viewport canvas);
+     the gradient sits on top as longhand so it can't reset the color back to
+     transparent (which is what left white top/bottom bars before). */
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at top, #151528 0%, var(--bg) 55%);
   color: var(--text);
   font-family: 'Space Grotesk', system-ui, sans-serif;
 }
