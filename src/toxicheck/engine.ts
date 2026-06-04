@@ -3,7 +3,7 @@ import type { Detection } from 'libreyolo-web';
 import { createToxicScore } from '../feature/toxic-score';
 import { captureStage } from '../feature/capture-frame';
 import { countByClass, DETECTION_CONFIDENCE } from '../feature/detection-utils';
-import { requestRekognition } from '../feature/rekognition';
+import { requestRekognition, describeVision } from '../feature/rekognition';
 import type { Analysis, Engine, OutfitItem } from './types';
 
 // Self-hosted weights (served same-origin from public/models/, fetched at build
@@ -90,11 +90,18 @@ export function createEngine(): Engine {
     let score = 0;
     let type = 'SIN DIAGNOSTICAR';
     const verdict = await requestRekognition(photo);
-    if (verdict && !verdict.error && verdict.roast) {
+    if (verdict?.roast) {
       score = verdict.roast.score;
       type = verdict.roast.type;
       redFlags = verdict.roast.redFlags;
       visionLines = verdict.roast.findings;
+    }
+    // Bedrock roast missing (e.g. timed out) but Rekognition still saw something
+    // → build the verdict locally so the user gets a roast, not an error screen.
+    if (redFlags.length === 0 && verdict && (verdict.faceFound || verdict.labels?.length)) {
+      const local = describeVision(verdict);
+      redFlags = local.roasts;
+      visionLines = local.findings;
     }
     if (redFlags.length === 0) {
       redFlags = [

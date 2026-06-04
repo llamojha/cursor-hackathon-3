@@ -19,6 +19,25 @@ export type RekognitionVerdict = {
   error?: string;
 };
 
+// Bound the request so a stalled server can't hang the capture forever. Kept a
+// little above the server's own worst-case (Rekognition + Bedrock timeouts) so
+// the server gets the chance to return a graceful response first.
+const REQUEST_TIMEOUT_MS = 35_000;
+
+// Turn an opaque fetch rejection into something a Spanish-speaking user (and we)
+// can act on. WebKit says "Load failed", Chromium "Failed to fetch" — both just
+// mean the request never reached/returned from the server.
+function describeFetchError(err: unknown): string {
+  if (err instanceof DOMException && err.name === 'TimeoutError') {
+    return 'tardó demasiado en responder';
+  }
+  const msg = err instanceof Error ? err.message : String(err);
+  if (/load failed|failed to fetch|networkerror|network error/i.test(msg)) {
+    return 'sin conexión con el servidor';
+  }
+  return msg || 'error desconocido';
+}
+
 export async function requestRekognition(
   dataUrl: string,
 ): Promise<RekognitionVerdict | null> {
@@ -27,12 +46,16 @@ export async function requestRekognition(
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image: dataUrl }),
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
-    const data = (await res.json()) as RekognitionVerdict;
-    if (!res.ok) return { faceFound: false, error: data.error ?? `HTTP ${res.status}` };
-    return data;
+    if (!res.ok) {
+      // Read the error body defensively — a platform-level 5xx may serve HTML.
+      const data = (await res.json().catch(() => null)) as RekognitionVerdict | null;
+      return { faceFound: false, error: data?.error ?? `HTTP ${res.status}` };
+    }
+    return (await res.json()) as RekognitionVerdict;
   } catch (err) {
-    return { faceFound: false, error: (err as Error).message };
+    return { faceFound: false, error: describeFetchError(err) };
   }
 }
 

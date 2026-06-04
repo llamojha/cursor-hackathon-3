@@ -35,6 +35,12 @@ const NOVA_MODEL = process.env.BEDROCK_MODEL_ID || 'us.amazon.nova-2-lite-v1:0';
 const REGION =
   process.env.REKOGNITION_REGION || process.env.AWS_REGION || 'us-east-1';
 
+// Hard per-call timeouts so a stalled AWS request can never hang the serverless
+// function past Vercel's execution window — an unbounded await is what surfaces
+// as "Load failed" in the browser when the platform resets the connection.
+const REKOGNITION_TIMEOUT_MS = 12_000;
+const BEDROCK_TIMEOUT_MS = 15_000;
+
 // Reused across warm invocations; credentials come from the default chain
 // (env vars / shared config / instance role) — never from the browser.
 let client: RekognitionClient | null = null;
@@ -104,6 +110,7 @@ async function generateRoast(v: RekognitionVerdict): Promise<Roast | undefined> 
         ],
         inferenceConfig: { maxTokens: 600, temperature: 0.8 },
       }),
+      { abortSignal: AbortSignal.timeout(BEDROCK_TIMEOUT_MS) },
     );
     const text = res.output?.message?.content?.[0]?.text ?? '';
     const json = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
@@ -138,9 +145,11 @@ export async function analyzeFrame(image: string): Promise<RekognitionVerdict> {
   const [facesRes, labelsRes] = await Promise.allSettled([
     client.send(
       new DetectFacesCommand({ Image: { Bytes: bytes }, Attributes: ['ALL'] }),
+      { abortSignal: AbortSignal.timeout(REKOGNITION_TIMEOUT_MS) },
     ),
     client.send(
       new DetectLabelsCommand({ Image: { Bytes: bytes }, MaxLabels: 30, MinConfidence: 75 }),
+      { abortSignal: AbortSignal.timeout(REKOGNITION_TIMEOUT_MS) },
     ),
   ]);
 
