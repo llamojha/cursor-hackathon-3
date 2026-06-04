@@ -1,0 +1,61 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="18%" cy="22%" r="75%">
+      <stop offset="0%" stop-color="#ff2d55" stop-opacity="0.28"/>
+      <stop offset="55%" stop-color="#ff2d55" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff2d55" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ff2d55"/>
+      <stop offset="100%" stop-color="#ff2d55" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="20" y="20" width="1160" height="590" rx="22" fill="none" stroke="#262626" stroke-width="2"/>
+
+  <!-- heart logo mark, top-right corner -->
+  <g transform="translate(1058,158) scale(3.05) translate(-32,-30)">
+    <path d="M32 44c-2.4 3.2-2.4 7 0 7s2.4-3.8 0-7Z" fill="#30d158"/>
+    <circle cx="22" cy="50" r="2.6" fill="#30d158"/>
+    <circle cx="42" cy="49" r="2" fill="#30d158"/>
+    <path d="M32 47.5C13 35.5 14 21 25.5 20.4c4.3-.2 6 3.4 6.5 4.9.5-1.5 2.2-5.1 6.5-4.9C50 21 51 35.5 32 47.5Z" fill="#ff2d55"/>
+    <path d="M24 26c-1.6.9-2.6 2.6-2.8 4.6" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+  </g>
+
+  <!-- badge -->
+  <g transform="translate(90,120)">
+    <rect x="0" y="0" width="468" height="44" rx="22" fill="#111111" stroke="#ff2d55" stroke-width="1.5"/>
+    <text x="26" y="29" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5" fill="#ff2d55">HUMANOVERIFICADO™ · ROAST MATCH</text>
+  </g>
+
+  <!-- wordmark -->
+  <text x="86" y="338" font-family="Liberation Sans, Arial, sans-serif" font-size="148" font-weight="800" letter-spacing="-5" fill="#f5f5f5">
+    <tspan fill="#ff2d55">TOXI</tspan><tspan fill="#f5f5f5">-CHECK</tspan>
+  </text>
+
+  <!-- tagline -->
+  <text x="92" y="400" font-family="Liberation Sans, Arial, sans-serif" font-size="33" font-weight="400" fill="#8a8a8a">La ropa habla. Nosotros la traducimos —y te diagnosticamos.</text>
+
+  <!-- feature chips -->
+  <g transform="translate(92,452)" font-family="Liberation Sans, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="1">
+    <g>
+      <rect x="0" y="0" width="172" height="48" rx="8" fill="#ff2d55"/>
+      <text x="86" y="31" text-anchor="middle" fill="#ffffff">RED FLAGS</text>
+    </g>
+    <g transform="translate(188,0)">
+      <rect x="0" y="0" width="186" height="48" rx="8" fill="#ffd60a"/>
+      <text x="93" y="31" text-anchor="middle" fill="#0a0a0a">TOXICIDAD</text>
+    </g>
+    <g transform="translate(394,0)">
+      <rect x="0" y="0" width="138" height="48" rx="8" fill="#30d158"/>
+      <text x="69" y="31" text-anchor="middle" fill="#0a0a0a">ROAST</text>
+    </g>
+  </g>
+
+  <!-- footer line -->
+  <rect x="90" y="540" width="640" height="2" fill="url(#scan)"/>
+  <text x="90" y="572" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="400" fill="#8a8a8a">Visión artificial en el navegador · LibreYOLO + Rekognition</text>
+</svg>

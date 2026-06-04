@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Toxi-Check">
+  <rect width="64" height="64" rx="14" fill="#0a0a0a"/>
+  <!-- toxic drips -->
+  <path d="M32 44c-2.4 3.2-2.4 7 0 7s2.4-3.8 0-7Z" fill="#30d158"/>
+  <circle cx="22" cy="50" r="2.6" fill="#30d158"/>
+  <circle cx="42" cy="49" r="2" fill="#30d158"/>
+  <!-- heart -->
+  <path d="M32 47.5C13 35.5 14 21 25.5 20.4c4.3-.2 6 3.4 6.5 4.9.5-1.5 2.2-5.1 6.5-4.9C50 21 51 35.5 32 47.5Z" fill="#ff2d55"/>
+  <!-- glint -->
+  <path d="M24 26c-1.6.9-2.6 2.6-2.8 4.6" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+</svg>

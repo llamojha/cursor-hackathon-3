@@ -25,6 +25,12 @@ npm run preview    # preview the production build
 `vercel.json` sets COOP/COEP headers so threaded WASM/WebGPU work in production
 (the dev server sets the same headers in `vite.config.ts`).
 
+Model weights are **self-hosted**, not downloaded from HuggingFace in the
+visitor's browser. `scripts/fetch-models.mjs` runs as a `prebuild`/`predev` hook
+(and `npm run fetch-models`) to pull the ONNX weights into `public/models/` at
+build time, so the browser loads them same-origin. This avoids a cross-origin
+runtime fetch that COEP isolation and flaky CDN access can break in production.
+
 ## How it works
 
 - `src/main.ts` — loads a model with `loadModel()`, grabs the webcam, then runs a
