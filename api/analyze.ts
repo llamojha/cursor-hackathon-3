@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { analyzeFrame } from '../server/analyze-frame';
+import { analyzeFrame } from '../server/analyze-frame.js';
 
 type Req = IncomingMessage & { body?: unknown };
 
