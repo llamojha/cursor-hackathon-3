@@ -6,7 +6,11 @@ import { countByClass, DETECTION_CONFIDENCE } from '../feature/detection-utils';
 import { requestRekognition } from '../feature/rekognition';
 import type { Analysis, Engine, OutfitItem } from './types';
 
-const MODEL = 'LibreYOLO9s';
+// Self-hosted weights (served same-origin from public/models/, fetched at build
+// time by scripts/fetch-models.mjs). YOLOX Nano (~3.6MB, 416) — the lightest
+// model in the zoo, so it loads fast and stays cheap on every visit.
+const MODEL_URL = '/models/yolox_n.onnx';
+const MODEL_OPTIONS = { modelFamily: 'yolox', inputSize: 416, device: 'auto' } as const;
 
 export function createEngine(): Engine {
   let model: Awaited<ReturnType<typeof loadModel>> | null = null;
@@ -17,7 +21,7 @@ export function createEngine(): Engine {
   const toxic = createToxicScore();
 
   const ready = (async () => {
-    model = await loadModel(MODEL);
+    model = await loadModel(MODEL_URL, MODEL_OPTIONS);
   })();
 
   function loop() {
@@ -37,9 +41,11 @@ export function createEngine(): Engine {
   }
 
   async function attachCamera(v: HTMLVideoElement) {
-    await ready;
     toxic.reset();
     lastDetections = [];
+    // Request the camera FIRST so the permission prompt appears immediately,
+    // independent of how long the model download/init takes. Awaiting the model
+    // before this would mean a slow/failed load swallows the prompt entirely.
     const stream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: 'user', width: 1280, height: 960 },
       audio: false,
@@ -47,6 +53,7 @@ export function createEngine(): Engine {
     v.srcObject = stream;
     await v.play();
     video = v;
+    await ready;
     running = true;
     requestAnimationFrame(loop);
   }

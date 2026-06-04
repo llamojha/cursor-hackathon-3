@@ -3,3 +3,6 @@ dist
 *.local
 .DS_Store
 .vite
+
+# Model weights are fetched at build time by scripts/fetch-models.mjs
+public/models/*.onnx

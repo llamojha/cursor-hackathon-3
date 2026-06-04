@@ -44,7 +44,11 @@ export class LandingApp {
 
   private async ensureModel(onProgress: (p: number) => void) {
     if (this.model) return this.model;
-    this.model = await loadModel('LibreYOLOXn', {
+    // Self-hosted YOLOX Nano (public/models/, fetched at build time) so the
+    // weights load same-origin instead of cross-origin from HuggingFace.
+    this.model = await loadModel('/models/yolox_n.onnx', {
+      modelFamily: 'yolox',
+      inputSize: 416,
       confThres: 0.32,
       device: 'auto',
       onProgress,
