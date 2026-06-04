@@ -53,9 +53,18 @@ export function createEngine(): Engine {
     v.srcObject = stream;
     await v.play();
     video = v;
-    await ready;
-    running = true;
-    requestAnimationFrame(loop);
+    // Start the live detection loop once the model is ready, but do NOT block
+    // camera setup (and the outfit countdown) on it. The capture verdict comes
+    // from the server (Rekognition), so the scan must proceed even if the local
+    // YOLO model loads slowly or fails — otherwise the camera shows live video
+    // but never captures after the countdown.
+    void ready
+      .then(() => {
+        if (video !== v) return; // camera was stopped / re-attached meanwhile
+        running = true;
+        requestAnimationFrame(loop);
+      })
+      .catch((err) => console.error('model load failed; skipping live detection', err));
   }
 
   function stopCamera() {
